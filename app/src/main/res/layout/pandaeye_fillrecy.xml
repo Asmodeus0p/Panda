@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="2.5dp"
+    android:orientation="vertical">
+
+<View
+    android:layout_width="match_parent"
+    android:background="#808A87"
+    android:layout_height="2dp"></View>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:src="@drawable/ic_launcher_background"
+            android:id="@+id/paandaeye_fill_recyImage"
+            android:layout_width="130dp"
+            android:scaleType="fitXY"
+            android:layout_height="100dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:id="@+id/paandaeye_fill_recytitle"
+            android:layout_marginLeft="10dp"
+            android:textSize="18sp"
+            android:layout_toEndOf="@+id/paandaeye_fill_recyImage"
+            android:text="asdf"
+            android:layout_toRightOf="@+id/paandaeye_fill_recyImage" />
+
+        <TextView
+            android:id="@+id/paandaeye_fill_recytime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:textSize="13sp"
+            android:layout_alignStart="@+id/paandaeye_fill_recytitle"
+            android:layout_marginTop="59dp"
+            android:text="sfds"
+            android:layout_alignLeft="@+id/paandaeye_fill_recytitle" />
+    </RelativeLayout>
+
+
+
+</LinearLayout>

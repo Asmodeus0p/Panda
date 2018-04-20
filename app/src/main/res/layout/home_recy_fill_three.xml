@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="2.5dp"
+    android:background="#ffffff"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:gravity="center_vertical"
+        android:text="熊猫观察"
+        android:layout_marginLeft="5dp"
+        android:textColor="@color/colorPrimary"
+        android:textSize="15sp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#c3c3c3">
+
+    </View>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/home_pandaeye_img"
+            android:layout_width="100dp"
+            android:layout_height="80dp"
+            android:layout_margin="20dp"
+            android:src="@mipmap/ic_launcher" />
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:layout_height="0dp">
+
+                <TextView
+                    android:textSize="10sp"
+                    android:textColor="@color/colorAccent"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_width="60dp"
+                    android:text="新生"
+                    android:gravity="center"
+                    android:layout_height="20dp"
+                    android:background="@drawable/rim"
+                    android:layout_gravity="center_vertical"/>
+
+                <TextView
+                    android:id="@+id/home_pandaeye_title"
+                    android:layout_margin="5dp"
+                    android:textSize="10sp"
+                    android:textStyle="bold"
+                    android:text="嘿嘿嘿"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#c3c3c3"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:layout_height="0dp">
+
+
+                <TextView
+                    android:textSize="10sp"
+                    android:textColor="@color/colorAccent"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_width="60dp"
+                    android:text="趣闻"
+                    android:gravity="center"
+                    android:layout_height="20dp"
+                    android:background="@drawable/rim"
+                    android:layout_gravity="center_vertical"/>
+
+                <TextView
+                    android:id="@+id/home_pandaeye_title2"
+                    android:layout_margin="5dp"
+                    android:textSize="10sp"
+                    android:textStyle="bold"
+                    android:text="嘿嘿嘿"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#c3c3c3"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/home_pandaeye_recyc"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </android.support.v7.widget.RecyclerView>
+
+
+</LinearLayout>
