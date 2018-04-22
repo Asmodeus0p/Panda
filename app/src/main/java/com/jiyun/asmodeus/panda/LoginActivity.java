@@ -69,6 +69,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     public static final String REFERER = "iPanda.Android";
 
     public static final String USER_AGENT = "CNTV_APP_CLIENT_CYNTV_MOBILE";
+    private String nickname;
+    private String mNickName;
 
 
     @Override
@@ -78,7 +80,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         initView();
 
     }
-
 
 
     private void initView() {
@@ -120,27 +121,21 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 break;
             case R.id.loding_btn:
                 goLogin();
-
                 break;
-
         }
     }
+
     private void goLogin() {
         FormBody.Builder params = new FormBody.Builder();
-
         Request.Builder builder = new Request.Builder();
-
         String account = login_Username.getText().toString().trim();
         String password = login_Password.getText().toString().trim();
-
         builder.header("Referer", LOGIN_URL);
         builder.header("User-Agent", USER_AGENT);
         params.add("service", "client_transaction");
         params.add("username", account);
-        params.add("password",password);
-        params.add("from","https://reg.cntv.cn/login/login.action");
-
-
+        params.add("password", password);
+        params.add("from", "https://reg.cntv.cn/login/login.action");
         FormBody formBody = params.build();
         Request request = builder.url(LOGIN_URL).post(formBody).build();
         OkHttpClient okHttpClient = new OkHttpClient();
@@ -153,28 +148,29 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 Headers headers = response.headers();
-                String verifycode = headers.get("Set-Cookie");
+                final String verifycode = headers.get("Set-Cookie");
                 String string = response.body().string();
                 UserBean userBean = new Gson().fromJson(string, UserBean.class);
-                String user_seq_id = userBean.getUser_seq_id();
-                Log.e("12344",userBean.getTicket());
+                final String user_seq_id = userBean.getUser_seq_id();
+                final String ticket = userBean.getTicket();
                 final String errMsg = userBean.getErrMsg();
-
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        if (errMsg.equals("成功")){
+                        if (errMsg.equals("成功")) {
                             Toast.makeText(LoginActivity.this, "登陆成功", Toast.LENGTH_SHORT).show();
+                            String UserName = getTicket(verifycode, user_seq_id, ticket);
 
                         }
                         if (errMsg.equals("密码错误，请重输。")) {
                             Toast.makeText(LoginActivity.this, "密码错误，请重输", Toast.LENGTH_SHORT).show();
                             hint_password.setText("密码错误，请重输");
-                        }  if (errMsg.equals("输入格式有误，请使用邮箱或手机号登录")) {
+                        }
+                        if (errMsg.equals("输入格式有误，请使用邮箱或手机号登录")) {
                             Toast.makeText(LoginActivity.this, "输入格式有误，请使用邮箱或手机号登录", Toast.LENGTH_SHORT).show();
                             hint_account.setText("输入格式有误，请使用邮箱或手机号登录");
                         }
-                        if (errMsg.equals("该帐号未注册")){
+                        if (errMsg.equals("该帐号未注册")) {
                             Toast.makeText(LoginActivity.this, "该帐号未注册", Toast.LENGTH_SHORT).show();
                             hint_account.setText("该帐号未注册");
                         }
@@ -182,5 +178,58 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 });
             }
         });
+    }
+
+    private String getTicket(String verifycode, String user_seq_id, String ticket) {
+        String client = "http://cbox_mobile.regclientuser.cntv.cn";
+        String url = "http://my.cntv.cn/intf/napi/api.php" + "?client="
+                + "cbox_mobile" + "&method=" + "user.getNickName"
+                + "&userid=" + user_seq_id;
+        OkHttpClient okHttpClient = new OkHttpClient.Builder().build();
+        Request.Builder builder = new Request.Builder();
+        try {
+            builder.addHeader("Referer", URLEncoder.encode(client, "UTF-8"))
+                    .addHeader("User-Agent", URLEncoder.encode("CNTV_APP_CLIENT_CBOX_MOBILE", "UTF-8"))
+                    .addHeader("Cookie", "verifycode=" + verifycode);
+            Request request = builder.url(url).build();
+            okHttpClient.newCall(request).enqueue(new Callback() {
+                @Override
+                public void onFailure(Call call, IOException e) {
+
+                }
+
+                @Override
+                public void onResponse(Call call, Response response) throws IOException {
+                    String string = response.body().string();
+                    JSONObject jo = null;
+
+                    try {
+                        jo = new JSONObject(string);
+                        if (jo.getString("code").equals("0")) {
+                            if (jo.has("content")) {
+                                JSONObject contentJSONObject = jo
+                                        .getJSONObject("content");
+                                if (contentJSONObject.has("nickname")) {
+                                    nickname = contentJSONObject
+                                            .getString("nickname");
+                                    Log.e("12345",nickname);
+                                } else {
+                                    mNickName = "default";
+                                }
+                            }
+                        } else {
+                            String codeErrorString = jo.getString("error");
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+
+
+        return nickname;
     }
 }

@@ -52,10 +52,13 @@ public class PersonalCenterActivity extends AppCompatActivity implements View.On
 
                 break;
             case R.id.PersonalCenter_guanhistory:
+
                 break;
             case R.id.PersonalCenter_mycollection:
+
                 break;
             case R.id.PersonalCenter_Setup:
+
                 break;
 
         }
