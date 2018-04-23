@@ -20,13 +20,13 @@ import java.util.ArrayList;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ChinaLiveTaishanFragment extends Fragment implements IChinaLIveContract.View {
+public class ChinaLiveFengHuangFragment extends Fragment implements IChinaLIveContract.View {
 
     private ArrayList<ChinaLive.LiveBean> mlist = new ArrayList<>();
-    private RecyclerView ChinaLIveTaiShanRecy;
+    private RecyclerView ChianLiveFengHuangRecy;
     private ChinaLiveRecyAdapter chinaLiveRecyAdapter;
 
-    public ChinaLiveTaishanFragment() {
+    public ChinaLiveFengHuangFragment() {
         // Required empty public constructor
     }
 
@@ -34,9 +34,10 @@ public class ChinaLiveTaishanFragment extends Fragment implements IChinaLIveCont
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_china_live_taishan, container, false);
+        View view = inflater.inflate(R.layout.fragment_feng_huang, container, false);
         IChinaLIveContract.Presenter presenter = new ChinaLivePresenter(this);
-        presenter.LoadTaiShan();
+        presenter.LoadFengHuang();
+
         initView(view);
         return view;
     }
@@ -53,9 +54,7 @@ public class ChinaLiveTaishanFragment extends Fragment implements IChinaLIveCont
 
     @Override
     public void ShowTaiShan(ChinaLive chinaLive) {
-        mlist.clear();
-        mlist.addAll(chinaLive.getLive());
-        chinaLiveRecyAdapter.notifyDataSetChanged();
+
     }
 
     @Override
@@ -65,7 +64,9 @@ public class ChinaLiveTaishanFragment extends Fragment implements IChinaLIveCont
 
     @Override
     public void ShowFengHuang(ChinaLive chinaLive) {
-
+        mlist.clear();
+        mlist.addAll(chinaLive.getLive());
+        chinaLiveRecyAdapter.notifyDataSetChanged();
     }
 
     @Override
@@ -74,10 +75,10 @@ public class ChinaLiveTaishanFragment extends Fragment implements IChinaLIveCont
     }
 
     private void initView(View view) {
-        ChinaLIveTaiShanRecy = (RecyclerView) view.findViewById(R.id.ChinaLIveTaiShanRecy);
+        ChianLiveFengHuangRecy = (RecyclerView) view.findViewById(R.id.ChianLiveFengHuangRecy);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
-        ChinaLIveTaiShanRecy.setLayoutManager(linearLayoutManager);
+        ChianLiveFengHuangRecy.setLayoutManager(linearLayoutManager);
         chinaLiveRecyAdapter = new ChinaLiveRecyAdapter(mlist, getContext());
-        ChinaLIveTaiShanRecy.setAdapter(chinaLiveRecyAdapter);
+        ChianLiveFengHuangRecy.setAdapter(chinaLiveRecyAdapter);
     }
 }
