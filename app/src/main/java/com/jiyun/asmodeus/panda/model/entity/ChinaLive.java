@@ -5,22 +5,43 @@ import java.util.List;
 public class ChinaLive {
 
 
+    /**
+     * title : 精编直播
+     * url : http://www.ipanda.com/kehuduan/liebiao/shanhaiguan/index.json
+     * type :
+     * order : 1
+     */
 
-    private List<LiveBean> live;
+    private List<TablistBean> tablist;
+    /**
+     * title : 凤凰古城
+     * url : http://www.ipanda.com/kehuduan/liebiao/fenghuanggucheng/index.json
+     * type :
+     * order : 1
+     */
 
-    public List<LiveBean> getLive() {
-        return live;
+    private List<AlllistBean> alllist;
+
+    public List<TablistBean> getTablist() {
+        return tablist;
     }
 
-    public void setLive(List<LiveBean> live) {
-        this.live = live;
+    public void setTablist(List<TablistBean> tablist) {
+        this.tablist = tablist;
     }
 
-    public static class LiveBean {
+    public List<AlllistBean> getAlllist() {
+        return alllist;
+    }
+
+    public void setAlllist(List<AlllistBean> alllist) {
+        this.alllist = alllist;
+    }
+
+    public static class TablistBean {
         private String title;
-        private String brief;
-        private String image;
-        private String id;
+        private String url;
+        private String type;
         private String order;
 
         public String getTitle() {
@@ -31,28 +52,59 @@ public class ChinaLive {
             this.title = title;
         }
 
-        public String getBrief() {
-            return brief;
+        public String getUrl() {
+            return url;
         }
 
-        public void setBrief(String brief) {
-            this.brief = brief;
+        public void setUrl(String url) {
+            this.url = url;
         }
 
-        public String getImage() {
-            return image;
+        public String getType() {
+            return type;
         }
 
-        public void setImage(String image) {
-            this.image = image;
+        public void setType(String type) {
+            this.type = type;
         }
 
-        public String getId() {
-            return id;
+        public String getOrder() {
+            return order;
         }
 
-        public void setId(String id) {
-            this.id = id;
+        public void setOrder(String order) {
+            this.order = order;
+        }
+    }
+
+    public static class AlllistBean {
+        private String title;
+        private String url;
+        private String type;
+        private String order;
+
+        public String getTitle() {
+            return title;
+        }
+
+        public void setTitle(String title) {
+            this.title = title;
+        }
+
+        public String getUrl() {
+            return url;
+        }
+
+        public void setUrl(String url) {
+            this.url = url;
+        }
+
+        public String getType() {
+            return type;
+        }
+
+        public void setType(String type) {
+            this.type = type;
         }
 
         public String getOrder() {

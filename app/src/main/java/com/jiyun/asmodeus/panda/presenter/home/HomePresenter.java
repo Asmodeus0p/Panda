@@ -7,6 +7,7 @@ import com.jiyun.asmodeus.panda.model.entity.CCTV;
 import com.jiyun.asmodeus.panda.model.entity.GYChina;
 import com.jiyun.asmodeus.panda.model.entity.HomeBean;
 import com.jiyun.asmodeus.panda.model.entity.HomePandaEye;
+import com.jiyun.asmodeus.panda.model.entity.HuDong;
 import com.jiyun.asmodeus.panda.model.home.HomeModel;
 import com.jiyun.asmodeus.panda.model.home.IHomeModel;
 import com.jiyun.asmodeus.panda.model.http.MyNetworkCallback;
@@ -68,5 +69,6 @@ public class HomePresenter implements IHomeContract.Presenter {
                 iHomeView.ShowData(data);
             }
         });
+
     }
 }

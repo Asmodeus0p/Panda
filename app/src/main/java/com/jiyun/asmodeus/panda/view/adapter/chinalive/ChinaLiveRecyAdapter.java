@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.jiyun.asmodeus.panda.R;
 import com.jiyun.asmodeus.panda.model.entity.ChinaLive;
+import com.jiyun.asmodeus.panda.model.entity.ChinaLivefu;
 import com.squareup.picasso.Picasso;
 
 
@@ -20,9 +21,9 @@ import java.util.ArrayList;
 
 public class ChinaLiveRecyAdapter extends RecyclerView.Adapter<ChinaLiveRecyAdapter.Holder> implements View.OnClickListener {
 
-    private ArrayList<ChinaLive.LiveBean> mList;
+    private ArrayList<ChinaLivefu.LiveBean> mList;
     Context context;
-    public ChinaLiveRecyAdapter(ArrayList<ChinaLive.LiveBean> mList, Context context) {
+    public ChinaLiveRecyAdapter(ArrayList<ChinaLivefu.LiveBean> mList, Context context) {
         this.mList = mList;
         this.context = context;
     }

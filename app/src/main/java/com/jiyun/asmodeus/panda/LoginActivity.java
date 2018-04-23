@@ -160,6 +160,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         if (errMsg.equals("成功")) {
                             Toast.makeText(LoginActivity.this, "登陆成功", Toast.LENGTH_SHORT).show();
                             String UserName = getTicket(verifycode, user_seq_id, ticket);
+                            Intent intent = new Intent();
+                            intent.putExtra("username",UserName);
+                            setResult(200,intent);
+
 
                         }
                         if (errMsg.equals("密码错误，请重输。")) {

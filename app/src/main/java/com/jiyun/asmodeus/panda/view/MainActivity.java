@@ -67,7 +67,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.hudongsign:
-
+                    startActivity(new Intent(this,HuDongActivity.class));
                 break;
             case R.id.personsign:
                 startActivity(new Intent(this, PersonalCenterActivity.class));

@@ -4,6 +4,7 @@ import com.jiyun.asmodeus.panda.model.entity.CCTV;
 import com.jiyun.asmodeus.panda.model.entity.GYChina;
 import com.jiyun.asmodeus.panda.model.entity.HomeBean;
 import com.jiyun.asmodeus.panda.model.entity.HomePandaEye;
+import com.jiyun.asmodeus.panda.model.entity.HuDong;
 import com.jiyun.asmodeus.panda.model.http.MyNetworkCallback;
 
 public interface IHomeModel {
@@ -12,4 +13,5 @@ public interface IHomeModel {
     void loadPandaEye(MyNetworkCallback<HomePandaEye> callback);
     void loadCCTv(MyNetworkCallback<CCTV> callback);
     void loadGYChina(MyNetworkCallback<GYChina> callback);
+
 }

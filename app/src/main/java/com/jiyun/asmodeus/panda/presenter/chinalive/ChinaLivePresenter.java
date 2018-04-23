@@ -1,5 +1,7 @@
 package com.jiyun.asmodeus.panda.presenter.chinalive;
 
+import android.util.Log;
+
 import com.jiyun.asmodeus.panda.contract.livechina.IChinaLIveContract;
 import com.jiyun.asmodeus.panda.model.chinalive.ChinaLiveModel;
 import com.jiyun.asmodeus.panda.model.chinalive.IChinaLiveModel;
@@ -15,92 +17,19 @@ public class ChinaLivePresenter implements IChinaLIveContract.Presenter {
         this.model = new ChinaLiveModel();
     }
 
+
     @Override
-    public void LoadNowLive() {
+    public void LoadChianLive() {
         model.LoadNowLive(new MyNetworkCallback<ChinaLive>() {
             @Override
             public void onError(String Message) {
-
+                Log.e("1234567",Message);
             }
 
             @Override
             public void onSuccess(ChinaLive data) {
-                view.ShowNowLive(data);
-            }
-        });
-    }
-
-    @Override
-    public void LoadBaDaLin() {
-        model.LoadBaDaLin(new MyNetworkCallback<ChinaLive>() {
-            @Override
-            public void onError(String Message) {
-
-            }
-
-            @Override
-            public void onSuccess(ChinaLive data) {
-                view.ShowBaDaLin(data);
-            }
-        });
-    }
-
-    @Override
-    public void LoadTaiShan() {
-        model.LoadTaiShan(new MyNetworkCallback<ChinaLive>() {
-            @Override
-            public void onError(String Message) {
-
-            }
-
-            @Override
-            public void onSuccess(ChinaLive data) {
-                view.ShowTaiShan(data);
-            }
-        });
-    }
-
-    @Override
-    public void LoadHuangShan() {
-        model.LoadHuangShan(new MyNetworkCallback<ChinaLive>() {
-            @Override
-            public void onError(String Message) {
-
-            }
-
-            @Override
-            public void onSuccess(ChinaLive data) {
-                view.ShowHuangShan(data);
-            }
-        });
-    }
-
-    @Override
-    public void LoadFengHuang() {
-        model.LoadFengHuang(new MyNetworkCallback<ChinaLive>() {
-            @Override
-            public void onError(String Message) {
-
-            }
-
-            @Override
-            public void onSuccess(ChinaLive data) {
-                view.ShowFengHuang(data);
-            }
-        });
-    }
-
-    @Override
-    public void LoadEMeiShan() {
-        model.LoadEMeiShan(new MyNetworkCallback<ChinaLive>() {
-            @Override
-            public void onError(String Message) {
-
-            }
-
-            @Override
-            public void onSuccess(ChinaLive data) {
-                view.ShowEMeiShan(data);
+                view.ShowData(data);
+                Log.e("123456","success");
             }
         });
     }

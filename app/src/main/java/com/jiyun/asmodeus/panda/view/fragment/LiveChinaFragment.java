@@ -5,54 +5,40 @@ import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
+import android.util.Log;
 
 import com.jiyun.asmodeus.panda.R;
+import com.jiyun.asmodeus.panda.contract.livechina.IChinaLIveContract;
+import com.jiyun.asmodeus.panda.model.entity.ChinaLive;
+import com.jiyun.asmodeus.panda.presenter.chinalive.ChinaLivePresenter;
 import com.jiyun.asmodeus.panda.view.adapter.chinalive.ChinaLiveVPAdapter;
 import com.jiyun.asmodeus.panda.view.base.BaseFragment;
-import com.jiyun.asmodeus.panda.view.fragment.chinalivefragments.ChinaLiveBadalinFragment;
-import com.jiyun.asmodeus.panda.view.fragment.chinalivefragments.ChinaLiveEMeiShanFragment;
-import com.jiyun.asmodeus.panda.view.fragment.chinalivefragments.ChinaLiveFengHuangFragment;
-import com.jiyun.asmodeus.panda.view.fragment.chinalivefragments.ChinaLiveHuangshanFragment;
-import com.jiyun.asmodeus.panda.view.fragment.chinalivefragments.ChinaLiveNowFragment;
-import com.jiyun.asmodeus.panda.view.fragment.chinalivefragments.ChinaLiveTaishanFragment;
 
 import java.util.ArrayList;
+import java.util.List;
 
-/**
- * A simple {@link Fragment} subclass.
- */
-public class LiveChinaFragment extends BaseFragment {
+
+public class LiveChinaFragment extends BaseFragment implements IChinaLIveContract.View {
 
 
     private TabLayout liveChina_tab;
     private ViewPager liveChina_viewPager;
     private ArrayList<String> title = new ArrayList<>();
     private ArrayList<Fragment> fragments  = new ArrayList<>();
-
+    private ChinaLiveVPAdapter chinaLiveVPAdapter;
 
 
     @Override
     protected void init() {
+
         liveChina_tab = getActivity().findViewById(R.id.LiveChina_Tab);
         liveChina_viewPager = getActivity().findViewById(R.id.LiveChina_ViewPager);
-        title.add("精彩直播");
-        title.add("八达岭");
-        title.add("泰山");
-        title.add("黄山");
-        title.add("凤凰古城");
-        title.add("峨眉山");
-        fragments.add(new ChinaLiveNowFragment());
-        fragments.add(new ChinaLiveBadalinFragment());
-        fragments.add(new ChinaLiveTaishanFragment());
-        fragments.add(new ChinaLiveHuangshanFragment());
-        fragments.add(new ChinaLiveFengHuangFragment());
-        fragments.add(new ChinaLiveEMeiShanFragment());
-        ChinaLiveVPAdapter chinaLiveVPAdapter = new ChinaLiveVPAdapter(getActivity().getSupportFragmentManager(), fragments, title);
+        chinaLiveVPAdapter = new ChinaLiveVPAdapter(getActivity().getSupportFragmentManager(), fragments, title);
+
         liveChina_viewPager.setAdapter(chinaLiveVPAdapter);
         liveChina_tab.setupWithViewPager(liveChina_viewPager);
+        IChinaLIveContract.Presenter presenter =  new ChinaLivePresenter(this);
+        presenter.LoadChianLive();
     }
 
     @Override
@@ -61,4 +47,20 @@ public class LiveChinaFragment extends BaseFragment {
     }
 
 
+    @Override
+    public void ShowData(ChinaLive chinaLive) {
+
+        List<ChinaLive.TablistBean> tablist = chinaLive.getTablist();
+        for (ChinaLive.TablistBean tablistBean : tablist) {
+            Log.e("123456",tablistBean.getTitle());
+            ChinaLiveFuYongFragment chinaLiveFuYongFragment = new ChinaLiveFuYongFragment();
+            title.add(tablistBean.getTitle());
+            Bundle bundle = new Bundle();
+            bundle.putString("url",tablistBean.getUrl());
+            chinaLiveFuYongFragment.setArguments(bundle);
+            fragments.add(chinaLiveFuYongFragment);
+
+        }
+        chinaLiveVPAdapter.notifyDataSetChanged();
+    }
 }

@@ -4,6 +4,7 @@ import com.jiyun.asmodeus.panda.model.entity.CCTV;
 import com.jiyun.asmodeus.panda.model.entity.GYChina;
 import com.jiyun.asmodeus.panda.model.entity.HomeBean;
 import com.jiyun.asmodeus.panda.model.entity.HomePandaEye;
+import com.jiyun.asmodeus.panda.model.entity.HuDong;
 import com.jiyun.asmodeus.panda.model.http.MyNetworkCallback;
 import com.jiyun.asmodeus.panda.model.http.OkHttpUtlis;
 
@@ -27,4 +28,6 @@ public class HomeModel implements IHomeModel {
     public void loadGYChina(MyNetworkCallback<GYChina> callback) {
         OkHttpUtlis.getInstance().doGet("http://www.ipanda.com/kehuduan/shipinliebieye/guangyingzhongguo/index.json",callback);
     }
+
+
 }

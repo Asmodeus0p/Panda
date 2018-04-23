@@ -27,18 +27,10 @@ public class HomeBean {
 
 
         private ChinaliveBean chinalive;
-        /**
-         * title : 特别策划
-         * interactiveone : [{"image":"http://p1.img.cctvpic.com/photoAlbum/page/performance/img/2017/6/5/1496626317442_981.jpg","title":"二十四节气\u2014\u2014芒种","url":"http://webapp.cctv.com/h5/travel/U80531QU7SY7.html","type":"","vid":"","order":"1"}]
-         * interactivetwo : []
-         */
+
 
         private InteractiveBean interactive;
-        /**
-         * title : 央视名栏
-         * listlive : []
-         * listurl : http://www.ipanda.com/kehuduan/shipinliebieye/cctvshipindicengye/index.json
-         */
+
 
         private CctvBean cctv;
         /**

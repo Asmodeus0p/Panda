@@ -5,19 +5,11 @@ import com.jiyun.asmodeus.panda.model.http.MyNetworkCallback;
 
 public interface IChinaLIveContract {
     public interface Presenter{
-        void LoadNowLive();
-        void LoadBaDaLin();
-        void LoadTaiShan();
-        void LoadHuangShan();
-        void LoadFengHuang();
-        void LoadEMeiShan();
+        void LoadChianLive();
+
     }
     public interface View {
-        void ShowNowLive(ChinaLive chinaLive);
-        void ShowBaDaLin(ChinaLive chinaLive);
-        void ShowTaiShan(ChinaLive chinaLive);
-        void ShowHuangShan(ChinaLive chinaLive);
-        void ShowFengHuang(ChinaLive chinaLive);
-        void ShowEMeiShan(ChinaLive chinaLive);
+        void ShowData(ChinaLive chinaLive);
+
     }
 }

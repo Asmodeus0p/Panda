@@ -4,6 +4,7 @@ import com.jiyun.asmodeus.panda.model.entity.CCTV;
 import com.jiyun.asmodeus.panda.model.entity.GYChina;
 import com.jiyun.asmodeus.panda.model.entity.HomeBean;
 import com.jiyun.asmodeus.panda.model.entity.HomePandaEye;
+import com.jiyun.asmodeus.panda.model.entity.HuDong;
 
 public interface IHomeContract {
     public interface View{
@@ -11,6 +12,7 @@ public interface IHomeContract {
         void ShowData(HomePandaEye eye);
         void ShowData(CCTV data);
         void ShowData(GYChina s);
+
     }
     public  interface  Presenter{
         void LoadRecord();
