@@ -15,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
+import com.jiyun.asmodeus.panda.model.SharedPreferencesUtils;
 import com.jiyun.asmodeus.panda.model.entity.UserBean;
 
 import org.json.JSONException;
@@ -159,11 +160,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     public void run() {
                         if (errMsg.equals("成功")) {
                             Toast.makeText(LoginActivity.this, "登陆成功", Toast.LENGTH_SHORT).show();
-                            String UserName = getTicket(verifycode, user_seq_id, ticket);
-                            Intent intent = new Intent();
-                            intent.putExtra("username",UserName);
-                            setResult(200,intent);
-
+                            getTicket(verifycode, user_seq_id, ticket);
 
                         }
                         if (errMsg.equals("密码错误，请重输。")) {
@@ -184,7 +181,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         });
     }
 
-    private String getTicket(String verifycode, String user_seq_id, String ticket) {
+    private void getTicket(String verifycode, String user_seq_id, String ticket) {
         String client = "http://cbox_mobile.regclientuser.cntv.cn";
         String url = "http://my.cntv.cn/intf/napi/api.php" + "?client="
                 + "cbox_mobile" + "&method=" + "user.getNickName"
@@ -216,7 +213,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                                 if (contentJSONObject.has("nickname")) {
                                     nickname = contentJSONObject
                                             .getString("nickname");
+                                    SharedPreferencesUtils.setParam(LoginActivity.this,"username",nickname);
                                     Log.e("12345",nickname);
+                                    finish();
                                 } else {
                                     mNickName = "default";
                                 }
@@ -233,7 +232,5 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             e.printStackTrace();
         }
 
-
-        return nickname;
     }
 }
