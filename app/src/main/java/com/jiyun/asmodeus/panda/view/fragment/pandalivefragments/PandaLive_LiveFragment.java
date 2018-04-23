@@ -8,6 +8,7 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.TableLayout;
 import android.widget.TextView;
@@ -24,15 +25,16 @@ import java.util.ArrayList;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class PandaLive_LiveFragment extends Fragment   {
+public class PandaLive_LiveFragment extends Fragment implements View.OnClickListener {
 
 
-    private RadioButton PandaLiveLiveImgBtn;
+    private ImageView PandaLiveLiveImgBtn;
     private TextView PandaLiveLiveText;
     private TabLayout pandaLiveLiveTabLayout;
     private ViewPager PAndaLiveLiveViewPager;
     private ArrayList<String> titles = new ArrayList<>();
-    private ArrayList<Fragment> fragments  =new ArrayList<>();
+    private ArrayList<Fragment> fragments = new ArrayList<>();
+
     public PandaLive_LiveFragment() {
         // Required empty public constructor
     }
@@ -47,18 +49,11 @@ public class PandaLive_LiveFragment extends Fragment   {
     }
 
     private void initView(View view) {
-        PandaLiveLiveImgBtn = (RadioButton) view.findViewById(R.id.PandaLiveLiveImgBtn);
+        PandaLiveLiveImgBtn = (ImageView) view.findViewById(R.id.PandaLiveLiveImgBtn);
         PandaLiveLiveText = (TextView) view.findViewById(R.id.PandaLiveLiveText);
         pandaLiveLiveTabLayout = (TabLayout) view.findViewById(R.id.pandaLiveLiveTabLayout);
 
-        if (PandaLiveLiveImgBtn.isChecked()) {
-            PandaLiveLiveText.setVisibility(View.VISIBLE);
-//            PandaLiveLiveImgBtn.setButtonDrawable(R.mipmap.com_facebook_tooltip_blue_topnub);
-        } else {
-            PandaLiveLiveText.setVisibility(View.GONE);
-//            PandaLiveLiveImgBtn.setButtonDrawable(R.mipmap.com_facebook_tooltip_blue_bottomnub);
-
-        }
+        PandaLiveLiveImgBtn.setOnClickListener(this);
         PAndaLiveLiveViewPager = (ViewPager) view.findViewById(R.id.PAndaLiveLiveViewPager);
         titles.add("多视角直播");
         titles.add("边看边聊");
@@ -70,5 +65,19 @@ public class PandaLive_LiveFragment extends Fragment   {
     }
 
 
+    @Override
+    public void onClick(View v) {
+        if (v.getId() == R.id.PandaLiveLiveImgBtn) {
+            if (PandaLiveLiveText.getVisibility() == View.GONE) {
+                PandaLiveLiveText.setVisibility(View.VISIBLE);
+                PandaLiveLiveImgBtn.setImageResource(R.mipmap.com_facebook_tooltip_blue_bottomnub);
+            } else {
+                PandaLiveLiveText.setVisibility(View.GONE);
+                PandaLiveLiveImgBtn.setImageResource(R.mipmap.com_facebook_tooltip_blue_topnub);
+            }
 
+
+        }
+
+    }
 }
