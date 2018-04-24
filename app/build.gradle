@@ -1,5 +1,5 @@
 apply plugin: 'com.android.application'
-
+apply plugin: 'org.greenrobot.greendao'
 android {
     compileSdkVersion 27
     defaultConfig {
@@ -16,8 +16,14 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    greendao{
+        schemaVersion 1
+        daoPackage 'com.maple.mylicecenter.greendao'
+        targetGenDir 'src/main/java'
+    }
+
     defaultConfig {
-        applicationId "com.xxx.xxx" //JPush上注册的包名.
+        applicationId "com.jiyun.asmodeus.panda" //JPush上注册的包名.
 
 
         ndk {
@@ -53,4 +59,5 @@ dependencies {
     implementation 'com.facebook.fresco:fresco:0.9.0+'
     implementation 'cn.jiguang.sdk:jpush:3.1.1'
     implementation 'cn.jiguang.sdk:jcore:1.1.9'
+    implementation 'org.greenrobot:greendao:3.2.2'
 }

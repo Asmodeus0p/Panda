@@ -61,7 +61,6 @@ public class PersonalCenterActivity extends AppCompatActivity implements View.On
             case R.id.returnimg:
                 finish();
                 break;
-
             case R.id.PersonalCenter_guanhistory:
 
                 break;
