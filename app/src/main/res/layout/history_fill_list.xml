@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="2.5dp"
+    android:orientation="vertical">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:src="@drawable/ic_launcher_background"
+            android:scaleType="fitXY"
+            android:id="@+id/fill_History_image"
+            android:layout_width="150dp"
+            android:layout_height="100dp"
+            android:layout_margin="2.5dp" />
+
+        <TextView
+            android:layout_margin="2.5dp"
+            android:id="@+id/fill_History_title"
+            android:layout_width="198dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="-2.5dp"
+            android:layout_toEndOf="@+id/fill_CCTV_image"
+            android:layout_marginLeft="-2.5dp"
+            android:layout_toRightOf="@+id/fill_CCTV_image" />
+
+        <TextView
+            android:id="@+id/fill_History_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/fill_CCTV_title"
+            android:layout_centerVertical="true"
+            android:layout_alignLeft="@+id/fill_CCTV_title" />
+    </RelativeLayout>
+</LinearLayout>

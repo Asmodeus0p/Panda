@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.jiyun.asmodeus.panda.model.SharedPreferencesUtils;
 import com.jiyun.asmodeus.panda.view.SignoutActivity;
 import com.jiyun.asmodeus.panda.view.UpSetActivity;
+import com.jiyun.asmodeus.panda.view.fragment.HistoryActivity;
 
 public class PersonalCenterActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -62,7 +63,7 @@ public class PersonalCenterActivity extends AppCompatActivity implements View.On
                 finish();
                 break;
             case R.id.PersonalCenter_guanhistory:
-
+                startActivity(new Intent(this, HistoryActivity.class));
                 break;
             case R.id.PersonalCenter_mycollection:
 
