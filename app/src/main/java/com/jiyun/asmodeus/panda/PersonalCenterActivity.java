@@ -9,6 +9,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.jiyun.asmodeus.panda.model.SharedPreferencesUtils;
+import com.jiyun.asmodeus.panda.view.SignoutActivity;
+import com.jiyun.asmodeus.panda.view.UpSetActivity;
 
 public class PersonalCenterActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -42,23 +44,15 @@ public class PersonalCenterActivity extends AppCompatActivity implements View.On
         String username = (String) SharedPreferencesUtils.getParam(this, "username", "请登陆");
         if (username != null) {
             PersonalCenter_nickname.setText(username);
-            PersonalCenter_login.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(PersonalCenterActivity.this, LoginActivity.class);
-                    startActivity(intent);
-                }
-            });
-        } else {
-            PersonalCenter_nickname.setText("请登陆");
-            PersonalCenter_login.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(PersonalCenterActivity.this, LoginActivity.class);
-                    startActivity(intent);
-                }
-            });
         }
+         PersonalCenter_login.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(PersonalCenterActivity.this, LoginActivity.class);
+                    startActivity(intent);
+                }
+            });
+
     }
 
     @Override
@@ -75,7 +69,7 @@ public class PersonalCenterActivity extends AppCompatActivity implements View.On
 
                 break;
             case R.id.PersonalCenter_Setup:
-
+                startActivity(new Intent(this, UpSetActivity.class));
                 break;
 
         }
