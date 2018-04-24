@@ -25,7 +25,9 @@
         <activity android:name=".view.HuDongActivity" />
         <activity android:name=".view.WebActivity" />
         <activity android:name=".view.SignoutActivity" />
-        <activity android:name=".view.UpSetActivity"></activity>
+        <activity android:name=".view.UpSetActivity" />
+        <activity android:name=".view.AboutPandaActivity" />
+        <activity android:name=".view.UserfeedbackActivity"></activity>
     </application>
 
 </manifest>
