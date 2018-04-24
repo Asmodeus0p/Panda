@@ -3,11 +3,15 @@ import android.content.Context;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
+
 import com.jiyun.asmodeus.panda.App;
 import com.jiyun.asmodeus.panda.R;
 import com.jiyun.asmodeus.panda.contract.home.IHomeContract;
+import com.jiyun.asmodeus.panda.model.GreenDaoUtils;
 import com.jiyun.asmodeus.panda.model.entity.CCTV;
 import com.jiyun.asmodeus.panda.model.entity.GYChina;
+import com.jiyun.asmodeus.panda.model.entity.GreenDaoBean;
 import com.jiyun.asmodeus.panda.model.entity.HomeBean;
 import com.jiyun.asmodeus.panda.model.entity.HomePandaEye;
 import com.jiyun.asmodeus.panda.presenter.home.HomePresenter;
@@ -16,6 +20,7 @@ import com.jiyun.asmodeus.panda.view.adapter.home.HomeGYAdapter;
 import com.jiyun.asmodeus.panda.view.adapter.home.HomePandaEyeAdapter;
 import com.jiyun.asmodeus.panda.view.adapter.home.RecyAdapter;
 import com.jiyun.asmodeus.panda.view.base.BaseFragment;
+import com.maple.mylicecenter.greendao.GreenDaoBeanDao;
 
 import java.util.ArrayList;
 
@@ -106,7 +111,17 @@ public class HomeFragment extends BaseFragment implements IHomeContract.View {
             @Override
             public void setDataThree(RecyclerView stu) {
                 stu.setLayoutManager(new LinearLayoutManager(App.context));
-                stu.setAdapter(new HomeGYAdapter((ArrayList<GYChina.ListBean>) s.getList()));
+                final ArrayList<GYChina.ListBean> list = (ArrayList<GYChina.ListBean>) s.getList();
+                HomeGYAdapter homeGYAdapter = new HomeGYAdapter(list);
+                homeGYAdapter.setOnItem(new HomeGYAdapter.OnItemClick() {
+                    @Override
+                    public void setOnItemClick(View v, int position) {
+                        GreenDaoBean greenDaoBean = new GreenDaoBean(list.get(position).getUrl(), list.get(position).getTitle(), list.get(position).getImage());
+                        GreenDaoBeanDao instance = GreenDaoUtils.getInstance(getContext());
+                        instance.insert(greenDaoBean);
+                    }
+                });
+                stu.setAdapter(homeGYAdapter);
             }
         });
     }

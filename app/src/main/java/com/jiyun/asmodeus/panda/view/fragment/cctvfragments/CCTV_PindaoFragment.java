@@ -13,10 +13,13 @@ import android.view.ViewGroup;
 
 import com.jiyun.asmodeus.panda.R;
 import com.jiyun.asmodeus.panda.contract.cctv.ICCTVContract;
+import com.jiyun.asmodeus.panda.model.GreenDaoUtils;
 import com.jiyun.asmodeus.panda.model.entity.CCTVPingDao;
 import com.jiyun.asmodeus.panda.model.entity.CCTVYangShi;
+import com.jiyun.asmodeus.panda.model.entity.GreenDaoBean;
 import com.jiyun.asmodeus.panda.presenter.cctv.CCTVPresenter;
 import com.jiyun.asmodeus.panda.view.adapter.cctv.CCTV_PinDao_Adapter;
+import com.maple.mylicecenter.greendao.GreenDaoBeanDao;
 
 import java.util.ArrayList;
 
@@ -69,6 +72,14 @@ public class CCTV_PindaoFragment extends Fragment implements ICCTVContract.View 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         CCTV_PinDaoRecy.setLayoutManager(linearLayoutManager);
         cctv_pinDao_adapter = new CCTV_PinDao_Adapter(mlist,getContext());
+        cctv_pinDao_adapter.setOnItem(new CCTV_PinDao_Adapter.OnItemClick() {
+            @Override
+            public void setOnItemClick(View v, int position) {
+                GreenDaoBean greenDaoBean = new GreenDaoBean(mlist.get(position).getUrl(), mlist.get(position).getTitle(), mlist.get(position).getImage());
+                GreenDaoBeanDao instance = GreenDaoUtils.getInstance(getContext());
+                instance.insert(greenDaoBean);
+            }
+        });
         CCTV_PinDaoRecy.setAdapter(cctv_pinDao_adapter);
     }
 }

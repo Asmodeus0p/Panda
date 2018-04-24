@@ -13,9 +13,12 @@ import android.view.ViewGroup;
 import com.jiyun.asmodeus.panda.App;
 import com.jiyun.asmodeus.panda.R;
 import com.jiyun.asmodeus.panda.contract.pandalive.IPandaLiveContract;
+import com.jiyun.asmodeus.panda.model.GreenDaoUtils;
+import com.jiyun.asmodeus.panda.model.entity.GreenDaoBean;
 import com.jiyun.asmodeus.panda.model.entity.PandaLivBean;
 import com.jiyun.asmodeus.panda.presenter.pandalive.PandaLivePresenter;
 import com.jiyun.asmodeus.panda.view.adapter.pandalive.PandaLiveMoreAdapter;
+import com.maple.mylicecenter.greendao.GreenDaoBeanDao;
 
 import java.util.ArrayList;
 
@@ -49,7 +52,17 @@ public class PandaLiveMoreFragment extends Fragment implements IPandaLiveContrac
 
     @Override
     public void ShowPandaLiveData(PandaLivBean livBean) {
-        PandaLiveLiveRecy.setAdapter(new PandaLiveMoreAdapter((ArrayList<PandaLivBean.ListBean>) livBean.getList()));
+        final ArrayList<PandaLivBean.ListBean> list = (ArrayList<PandaLivBean.ListBean>) livBean.getList();
+        final PandaLiveMoreAdapter pandaLiveMoreAdapter = new PandaLiveMoreAdapter(list);
+        PandaLiveLiveRecy.setAdapter(pandaLiveMoreAdapter);
+        pandaLiveMoreAdapter.setOnItem(new PandaLiveMoreAdapter.OnItemClick() {
+            @Override
+            public void setOnItemClick(View v, int position) {
+                GreenDaoBean greenDaoBean = new GreenDaoBean(list.get(position).getUrl(), list.get(position).getTitle(), list.get(position).getImage());
+                GreenDaoBeanDao instance = GreenDaoUtils.getInstance(getContext());
+                instance.insert(greenDaoBean);
+            }
+        });
 
     }
 }
