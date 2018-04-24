@@ -82,7 +82,14 @@ public class UpSetActivity extends Activity implements View.OnClickListener {
                 break;
             case R.id.pe_set_play_view:
                 count++;
-                pe_set_play_view.setImageResource(R.mipmap.switch_open);
+                if (count%2 ==0){
+                    pe_set_play_view.setImageResource(R.mipmap.switch_close);
+
+                }
+                else {
+                    pe_set_play_view.setImageResource(R.mipmap.switch_open);
+                }
+
                 break;
             case R.id.personal_set_delete_cache_layout:
                DataCleanCaChe.clearAllCache(this);

@@ -58,7 +58,9 @@ public class CommonFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 submit();
-                Toast.makeText(getContext(), "提交成功", Toast.LENGTH_SHORT).show();
+
+
+
             }
         });
     }
@@ -80,7 +82,9 @@ public class CommonFragment extends Fragment {
         if (!myquestion_cb1.isChecked()&&!myquestion_cb2.isChecked()&&!myquestion_cb3.isChecked()&&!myquestion_cb4.isChecked()&&!myquestion_cb5.isChecked()&&!myquestion_cb6.isChecked()) {
             Toast.makeText(getContext(), "请勾选相关问题", Toast.LENGTH_SHORT).show();
         }
-
+        Toast.makeText(getContext(), "提交成功", Toast.LENGTH_SHORT).show();
+        myquestion_content.setText("");
+        myquestion_contact.setText("");
 
     }
 }
