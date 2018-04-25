@@ -6,13 +6,14 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class ChinaLiveVPAdapter extends FragmentPagerAdapter {
-    private ArrayList<String> title = new ArrayList<>();
-    private ArrayList <Fragment> fragments = new ArrayList<>();
+    private List<String> title;
+    private List <Fragment> fragments;
 
-    public ChinaLiveVPAdapter(FragmentManager fm, ArrayList <Fragment> fragments, ArrayList <String> title) {
+    public ChinaLiveVPAdapter(FragmentManager fm, List<Fragment> fragments, List<String> title) {
         super(fm);
         this.fragments = fragments;
         this.title = title;

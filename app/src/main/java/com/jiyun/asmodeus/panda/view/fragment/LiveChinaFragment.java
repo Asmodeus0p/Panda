@@ -23,23 +23,22 @@ public class LiveChinaFragment extends BaseFragment implements IChinaLIveContrac
 
     private TabLayout liveChina_tab;
     private ViewPager liveChina_viewPager;
-    private ArrayList<String> title = new ArrayList<>();
-    private ArrayList<Fragment> fragments  = new ArrayList<>();
+
+    private List<String> tabList ;
+
+    private List<Fragment> fragmentss;
     private ChinaLiveVPAdapter chinaLiveVPAdapter;
 
 
     @Override
     protected void init() {
-
         liveChina_tab = getActivity().findViewById(R.id.LiveChina_Tab);
         liveChina_viewPager = getActivity().findViewById(R.id.LiveChina_ViewPager);
-        chinaLiveVPAdapter = new ChinaLiveVPAdapter(getActivity().getSupportFragmentManager(), fragments, title);
-
-        liveChina_viewPager.setAdapter(chinaLiveVPAdapter);
-        liveChina_tab.setupWithViewPager(liveChina_viewPager);
-        IChinaLIveContract.Presenter presenter =  new ChinaLivePresenter(this);
+        IChinaLIveContract.Presenter presenter = new ChinaLivePresenter(this);
         presenter.LoadChianLive();
+
     }
+
 
     @Override
     protected int getLayoutId() {
@@ -48,19 +47,25 @@ public class LiveChinaFragment extends BaseFragment implements IChinaLIveContrac
 
 
     @Override
-    public void ShowData(ChinaLive chinaLive) {
+    public void ShowData(ChinaLive data) {
 
-        List<ChinaLive.TablistBean> tablist = chinaLive.getTablist();
+        fragmentss = new ArrayList<>();
+        tabList = new ArrayList<>();
+        List<ChinaLive.TablistBean> tablist = data.getTablist();
         for (ChinaLive.TablistBean tablistBean : tablist) {
-            Log.e("123456",tablistBean.getTitle());
-            ChinaLiveFuYongFragment chinaLiveFuYongFragment = new ChinaLiveFuYongFragment();
-            title.add(tablistBean.getTitle());
             Bundle bundle = new Bundle();
             bundle.putString("url",tablistBean.getUrl());
+            tabList.add(tablistBean.getTitle());
+            ChinaLiveFuYongFragment chinaLiveFuYongFragment = new ChinaLiveFuYongFragment();
+            fragmentss.add(chinaLiveFuYongFragment);
             chinaLiveFuYongFragment.setArguments(bundle);
-            fragments.add(chinaLiveFuYongFragment);
-
+            Log.e("asdfgh",tablistBean.getTitle());
         }
+
+        chinaLiveVPAdapter =new ChinaLiveVPAdapter(getActivity().getSupportFragmentManager(), fragmentss, tabList);
         chinaLiveVPAdapter.notifyDataSetChanged();
+        liveChina_viewPager.setAdapter(chinaLiveVPAdapter);
+        liveChina_tab.setupWithViewPager(liveChina_viewPager);
+
     }
 }

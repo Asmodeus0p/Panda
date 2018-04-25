@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingLeft="25dp"
+    android:paddingRight="25dp"
+    android:paddingBottom="15dp"
+    android:paddingTop="15dp">
+
+
+    <TextView
+        android:id="@+id/china_live_popup_window_item_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="嘿嘿嘿"
+        android:textColor="#000000"
+        android:textSize="15sp"
+        android:background="#ffffff"/>
+    <ImageView
+        android:id="@+id/china_live_popup_window_item_close"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:layout_alignParentRight="true"
+        android:src="@mipmap/com_facebook_tooltip_black_xout"
+        android:visibility="gone"/>
+
+
+</RelativeLayout>
